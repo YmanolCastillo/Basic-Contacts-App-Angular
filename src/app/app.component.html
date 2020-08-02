@@ -1,0 +1,55 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">Basic Contacts App</a>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="list-group mt-4">
+        <li
+          class="list-group-item list-group-item-action"
+          *ngFor="let contacto of contactosArray"
+          (click)="OpenForEdit(contacto)"
+          [class.active]="contacto == selectedContacto"
+        >
+          <span class="badge badge-primary"> {{ contacto.id }} </span>
+          <b class="ml-2">Nombre:</b> {{ contacto.nombre }} | <b>Telefono:</b>
+          {{ contacto.telefono }}
+        </li>
+      </ul>
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="card-title">
+            Agrega un nuevo contacto
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              [(ngModel)]="selectedContacto.nombre"
+              placeholder="Inserta el Nombre"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              [(ngModel)]="selectedContacto.telefono"
+              placeholder="Inserta el Telefono"
+              class="form-control"
+            />
+          </div>
+          <button class="btn btn-primary mr-4" (click)="AddOrEdit()">
+            Guardar
+          </button>
+          <button
+            *ngIf="selectedContacto.id"
+            class="btn btn-danger"
+            (click)="Eliminar()"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
